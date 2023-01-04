@@ -14,7 +14,7 @@ pub fn call_price(spot: f64, strike: f64, vol: f64, time: f64, rate: f64,  div: 
         for i in 0..=j {
             price[i as usize] = p0 * price[(i + 1) as usize] + p1 * price[i as usize];
             let exercise = -strike + spot * up.powi(2 * i - j);
-            price[i as usize] = f64::max(price[i as usize],exercise);
+            price[i as usize] = f64::max(price[i as usize], exercise);
         }
     }
     price[0]
