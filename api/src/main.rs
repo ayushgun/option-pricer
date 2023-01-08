@@ -1,36 +1,103 @@
-use actix_web::{get, App, HttpServer, Responder};
+mod models;
+use actix_extensible_rate_limit::{
+    backend::memory::InMemoryBackend, backend::SimpleInputFunctionBuilder, RateLimiter,
+};
+use actix_web::{get, http::header::ContentType, web, App, HttpResponse, HttpServer, Responder};
+use serde::Serialize;
 
-//import classes
-// use black_scholes::BlackScholes;
-// mod black_scholes;
-
-// use binomial::Binomial;
-// mod binomial;
-
-#[get("/")]
-async fn greet() -> impl Responder {
-    format!("Hello World!")
+// Declare response object
+#[derive(Serialize)]
+struct Result {
+    price: f64,
 }
 
+// Add logic to API routes
+#[get("/")]
+async fn root() -> impl Responder {
+    format!("Pricer API is online.")
+}
+
+#[get("/call/black_scholes")]
+async fn black_scholes_call(data: web::Json<models::BlackScholes>) -> impl Responder {
+    // Construct JSON response
+    let response = Result {
+        price: data.call_price(),
+    };
+
+    // Return JSON response and 200 status
+    HttpResponse::Ok()
+        .content_type(ContentType::plaintext())
+        .json(web::Json(response))
+}
+
+#[get("/call/binomial")]
+async fn binomial_call(data: web::Json<models::Binomial>) -> impl Responder {
+    // Construct JSON response
+    let response = Result {
+        price: data.call_price(),
+    };
+
+    // Return JSON response and 200 status
+    HttpResponse::Ok()
+        .content_type(ContentType::plaintext())
+        .json(web::Json(response))
+}
+
+#[get("/put/black_scholes")]
+async fn black_scholes_put(data: web::Json<models::BlackScholes>) -> impl Responder {
+    // Construct JSON response
+    let response = Result {
+        price: data.put_price(),
+    };
+
+    // Return JSON response and 200 status
+    HttpResponse::Ok()
+        .content_type(ContentType::plaintext())
+        .json(web::Json(response))
+}
+
+#[get("/put/binomial")]
+async fn binomial_put(data: web::Json<models::Binomial>) -> impl Responder {
+    // Construct JSON response
+    let response = Result {
+        price: data.put_price(),
+    };
+
+    // Return JSON response and 200 status
+    HttpResponse::Ok()
+        .content_type(ContentType::plaintext())
+        .json(web::Json(response))
+}
+
+// Connect services to HTTP server
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    // Log start message in console
     println!("Starting API at http://localhost:8000/");
 
-    //test: work:  delete when necessary
-    // let bs = BlackScholes::new(100.0, 110.0, 0.2, 1.0, 0.05, 0.03);
-    // let bs_call_price = bs.call_price();
-    // let bs_put_price = bs.put_price();
-    // println!("{}", bs_call_price);
-    // println!("{}", bs_put_price);
+    // Initialize ratelimiter in-memory storage
+    let store = InMemoryBackend::builder().build();
 
-    // let bin = Binomial::new(100.0, 110.0, 0.2, 1.0, 0.05, 0.03, 500);
-    // let bin_call_price = bin.call_price();
-    // let bin_put_price = bin.put_price();
-    // println!("{}", bin_call_price);
-    // println!("{}", bin_put_price);
+    // Initialize HTTP server
+    HttpServer::new(move || {
+        // Allow 1 request per 1 second
+        let input = SimpleInputFunctionBuilder::new(std::time::Duration::from_secs(1), 1)
+            .real_ip_key()
+            .build();
+        let middleware = RateLimiter::builder(store.clone(), input)
+            .add_headers()
+            .build();
 
-    HttpServer::new(|| App::new().service(greet))
-        .bind(("localhost", 8000))?
-        .run()
-        .await
+        // Add services and middlewares
+        App::new()
+            .wrap(middleware)
+            .service(root)
+            .service(black_scholes_call)
+            .service(binomial_call)
+            .service(black_scholes_put)
+            .service(binomial_put)
+    })
+    .bind(("localhost", 8000))?
+    .run()
+    .await
 }
