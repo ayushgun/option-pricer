@@ -31,7 +31,7 @@ async function getPutBlackScholes(data: black_scholes_data): Promise<any> {
 
 async function getCallBinomial(data: binomial_data): Promise<any> {
     const response = await fetch('/call/binomial?data=${JSON.stringify(data)}');
-    return await response.json()l
+    return await response.json();
 }
 
 async function getPutBinomial(data: binomial_data): Promise<any> {
