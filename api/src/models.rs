@@ -26,26 +26,6 @@ pub struct BlackScholes {
 
 // Compute call and put prices with binomial model
 impl Binomial {
-    pub fn new(
-        spot: f64,
-        strike: f64,
-        vol: f64,
-        time: f64,
-        rate: f64,
-        div: f64,
-        steps: i32,
-    ) -> Binomial {
-        Binomial {
-            spot,
-            strike,
-            vol,
-            time,
-            rate,
-            div,
-            steps,
-        }
-    }
-
     pub fn call_price(&self) -> f64 {
         let dt = self.time / self.steps as f64;
         let up = (self.vol * dt.powf(0.5)).exp();
@@ -89,17 +69,6 @@ impl Binomial {
 
 // Compute call and put prices black-scholes model
 impl BlackScholes {
-    pub fn new(spot: f64, strike: f64, vol: f64, time: f64, ir: f64, q: f64) -> BlackScholes {
-        BlackScholes {
-            spot,
-            strike,
-            vol,
-            time,
-            ir,
-            q,
-        }
-    }
-
     fn d1(&self) -> f64 {
         (f64::ln(self.spot / self.strike) + (self.ir - self.q + self.vol.powi(2) / 2.0) * self.time)
             / (self.vol * self.time.powf(0.5))
