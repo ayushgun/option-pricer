@@ -20,8 +20,8 @@ pub struct BlackScholes {
     pub strike: f64,
     pub vol: f64,
     pub time: f64,
-    pub ir: f64,
-    pub q: f64,
+    pub rate: f64,
+    pub div: f64,
 }
 
 // Compute call and put prices with binomial model
@@ -70,7 +70,8 @@ impl Binomial {
 // Compute call and put prices black-scholes model
 impl BlackScholes {
     fn d1(&self) -> f64 {
-        (f64::ln(self.spot / self.strike) + (self.ir - self.q + self.vol.powi(2) / 2.0) * self.time)
+        (f64::ln(self.spot / self.strike)
+            + (self.rate - self.div + self.vol.powi(2) / 2.0) * self.time)
             / (self.vol * self.time.powf(0.5))
     }
 
@@ -80,13 +81,13 @@ impl BlackScholes {
 
     pub fn call_price(&self) -> f64 {
         let normal = Normal::new(0.0, 1.0).unwrap();
-        self.spot * normal.cdf(self.d1()) * (-self.q * self.time).exp()
-            - self.strike * normal.cdf(self.d2()) * (-self.ir * self.time).exp()
+        self.spot * normal.cdf(self.d1()) * (-self.div * self.time).exp()
+            - self.strike * normal.cdf(self.d2()) * (-self.rate * self.time).exp()
     }
 
     pub fn put_price(&self) -> f64 {
         let normal = Normal::new(0.0, 1.0).unwrap();
-        -self.spot * normal.cdf(-self.d1()) * (-self.q * self.time).exp()
-            + self.strike * normal.cdf(-self.d2()) * (-self.ir * self.time).exp()
+        -self.spot * normal.cdf(-self.d1()) * (-self.div * self.time).exp()
+            + self.strike * normal.cdf(-self.d2()) * (-self.rate * self.time).exp()
     }
 }
