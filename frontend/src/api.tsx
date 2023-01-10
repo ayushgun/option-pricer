@@ -19,9 +19,17 @@ interface Binomial {
   steps: number;
 }
 
+type Response = {
+  price: number;
+};
+
+function isValidResponse(object: any): object is Response {
+  return "price" in object;
+}
+
 const URL = "http://localhost:8000";
 
-async function black_scholes_call(data: BlackScholes): Promise<any> {
+async function black_scholes_call(data: BlackScholes): Promise<number> {
   let call_url =
     `${URL}/call/black_scholes?spot=${data.spot}&strike=${data.spot}` +
     `&vol=${data.vol}&time=${data.time}&rate=${data.rate}&div=${data.div}`;
@@ -29,14 +37,17 @@ async function black_scholes_call(data: BlackScholes): Promise<any> {
     await fetch(call_url)
       .then((res) => res.json())
       .then((json) => {
-        return json;
+        if (isValidResponse(json)) {
+          return json.price;
+        }
       });
+    return -1;
   } catch (e) {
     throw e;
   }
 }
 
-async function black_scholes_put(data: BlackScholes): Promise<any> {
+async function black_scholes_put(data: BlackScholes): Promise<number> {
   let call_url =
     `${URL}/put/black_scholes?spot=${data.spot}&strike=${data.spot}` +
     `&vol=${data.vol}&time=${data.time}&rate=${data.rate}&div=${data.div}`;
@@ -44,38 +55,47 @@ async function black_scholes_put(data: BlackScholes): Promise<any> {
     await fetch(call_url)
       .then((res) => res.json())
       .then((json) => {
-        return json;
+        if (isValidResponse(json)) {
+          return json.price;
+        }
       });
+    return -1;
   } catch (e) {
     throw e;
   }
 }
 
-async function binomial_call(data: Binomial): Promise<any> {
+async function binomial_call(data: Binomial): Promise<number> {
   let call_url =
     `${URL}/call/binomial?spot=${data.spot}&strike=${data.spot}` +
-    `&vol=${data.vol}&time=${data.time}&rate=${data.rate}&div=${data.div}&steps=${data.steps}`;
+    `&vol=${data.vol}&time=${data.time}&rate=${data.rate}&div=${data.div}`;
   try {
     await fetch(call_url)
       .then((res) => res.json())
       .then((json) => {
-        return json;
+        if (isValidResponse(json)) {
+          return json.price;
+        }
       });
+    return -1;
   } catch (e) {
     throw e;
   }
 }
 
-async function binomial_put(data: Binomial): Promise<any> {
+async function binomial_put(data: Binomial): Promise<number> {
   let call_url =
     `${URL}/put/binomial?spot=${data.spot}&strike=${data.spot}` +
-    `&vol=${data.vol}&time=${data.time}&rate=${data.rate}&div=${data.div}&steps=${data.steps}`;
+    `&vol=${data.vol}&time=${data.time}&rate=${data.rate}&div=${data.div}`;
   try {
     await fetch(call_url)
       .then((res) => res.json())
       .then((json) => {
-        return json;
+        if (isValidResponse(json)) {
+          return json.price;
+        }
       });
+    return -1;
   } catch (e) {
     throw e;
   }
