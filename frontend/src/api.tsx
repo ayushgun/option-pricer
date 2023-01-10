@@ -38,7 +38,7 @@ async function black_scholes_call(data: BlackScholes): Promise<any> {
 
 async function black_scholes_put(data: BlackScholes): Promise<any> {
   let call_url =
-    `${URL}/call/black_scholes?spot=${data.spot}&strike=${data.spot}` +
+    `${URL}/put/black_scholes?spot=${data.spot}&strike=${data.spot}` +
     `&vol=${data.vol}&time=${data.time}&rate=${data.rate}&div=${data.div}`;
   try {
     await fetch(call_url)
@@ -68,7 +68,7 @@ async function binomial_call(data: Binomial): Promise<any> {
 
 async function binomial_put(data: Binomial): Promise<any> {
   let call_url =
-    `${URL}/call/binomial?spot=${data.spot}&strike=${data.spot}` +
+    `${URL}/put/binomial?spot=${data.spot}&strike=${data.spot}` +
     `&vol=${data.vol}&time=${data.time}&rate=${data.rate}&div=${data.div}&steps=${data.steps}`;
   try {
     await fetch(call_url)
