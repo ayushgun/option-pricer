@@ -18,7 +18,7 @@ async fn root() -> impl Responder {
 }
 
 #[get("/call/black_scholes")]
-async fn black_scholes_call(data: web::Json<models::BlackScholes>) -> impl Responder {
+async fn black_scholes_call(data: web::Query<models::BlackScholes>) -> impl Responder {
     // Construct JSON response
     let response = Result {
         price: data.call_price(),
@@ -31,7 +31,7 @@ async fn black_scholes_call(data: web::Json<models::BlackScholes>) -> impl Respo
 }
 
 #[get("/call/binomial")]
-async fn binomial_call(data: web::Json<models::Binomial>) -> impl Responder {
+async fn binomial_call(data: web::Query<models::Binomial>) -> impl Responder {
     // Construct JSON response
     let response = Result {
         price: data.call_price(),
@@ -44,7 +44,7 @@ async fn binomial_call(data: web::Json<models::Binomial>) -> impl Responder {
 }
 
 #[get("/put/black_scholes")]
-async fn black_scholes_put(data: web::Json<models::BlackScholes>) -> impl Responder {
+async fn black_scholes_put(data: web::Query<models::BlackScholes>) -> impl Responder {
     // Construct JSON response
     let response = Result {
         price: data.put_price(),
@@ -57,7 +57,7 @@ async fn black_scholes_put(data: web::Json<models::BlackScholes>) -> impl Respon
 }
 
 #[get("/put/binomial")]
-async fn binomial_put(data: web::Json<models::Binomial>) -> impl Responder {
+async fn binomial_put(data: web::Query<models::Binomial>) -> impl Responder {
     // Construct JSON response
     let response = Result {
         price: data.put_price(),
