@@ -2,7 +2,7 @@ use serde::Deserialize;
 use statrs::distribution::Normal;
 use statrs::distribution::Univariate;
 
-// Structure object parameters
+// Parameter objects
 #[derive(Deserialize)]
 pub struct Binomial {
     spot: f64,
