@@ -21,7 +21,8 @@ let binData = {
 };
 
 
-black_scholes_call(bsData);
+var x = black_scholes_call(bsData);
+x.then(res => res.json()).then(r => {console.log(r.price)});
 
 // console.log(black_scholes_put(bsData));
 

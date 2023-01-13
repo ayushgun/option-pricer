@@ -38,16 +38,7 @@ export function black_scholes_call(data: BlackScholes) {
     `${URL}/call/black_scholes?spot=${data.spot}&strike=${data.strike}` +
     `&vol=${data.vol}&time=${data.time}&rate=${data.rate}&div=${data.div}`;
     try {
-      fetch(call_url)
-        .then((res) => res.json())
-        .then((json) => {
-          if (isValidResponse(json)) {
-            console.log(json.price);
-            return json.price;
-          }
-        });
-  
-      return 0;
+      return fetch(call_url);
     } catch (e) {
       throw e;
     }
@@ -58,16 +49,7 @@ export function black_scholes_put(data: BlackScholes) {
     `${URL}/put/black_scholes?spot=${data.spot}&strike=${data.strike}` +
     `&vol=${data.vol}&time=${data.time}&rate=${data.rate}&div=${data.div}`;
     try {
-      fetch(call_url)
-        .then((res) => res.json())
-        .then((json) => {
-          if (isValidResponse(json)) {
-            console.log(json.price);
-            return json.price;
-          }
-        });
-  
-      return 0;
+      return fetch(call_url);
     } catch (e) {
       throw e;
     }
@@ -78,16 +60,7 @@ export function binomial_call(data: Binomial) {
     `${URL}/call/binomial?spot=${data.spot}&strike=${data.strike}` +
     `&vol=${data.vol}&time=${data.time}&rate=${data.rate}&div=${data.div}&steps=${data.steps}`;
     try {
-      fetch(call_url)
-        .then((res) => res.json())
-        .then((json) => {
-          if (isValidResponse(json)) {
-            console.log(json.price);
-            return json.price;
-          }
-        });
-  
-      return 0;
+      return fetch(call_url);
     } catch (e) {
       throw e;
     }
@@ -96,18 +69,9 @@ export function binomial_call(data: Binomial) {
 export function binomial_put(data: Binomial) {
   let call_url =
     `${URL}/put/binomial?spot=${data.spot}&strike=${data.strike}` +
-    `&vol=${data.vol}&time=${data.time}&rate=${data.rate}&steps=${data.steps}`;
+    `&vol=${data.vol}&time=${data.time}&rate=${data.rate}&div=${data.div}&steps=${data.steps}`;
     try {
-      fetch(call_url)
-        .then((res) => res.json())
-        .then((json) => {
-          if (isValidResponse(json)) {
-            console.log(json.price);
-            return json.price;
-          }
-        });
-  
-      return 0;
+      return fetch(call_url);
     } catch (e) {
       throw e;
     }

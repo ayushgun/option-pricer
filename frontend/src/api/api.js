@@ -14,15 +14,7 @@ function black_scholes_call(data) {
     var call_url = "".concat(exports.URL, "/call/black_scholes?spot=").concat(data.spot, "&strike=").concat(data.strike) +
         "&vol=".concat(data.vol, "&time=").concat(data.time, "&rate=").concat(data.rate, "&div=").concat(data.div);
     try {
-        (0, node_fetch_1["default"])(call_url)
-            .then(function (res) { return res.json(); })
-            .then(function (json) {
-            if (isValidResponse(json)) {
-                console.log(json.price);
-                return json.price;
-            }
-        });
-        return 0;
+        return (0, node_fetch_1["default"])(call_url);
     }
     catch (e) {
         throw e;
@@ -33,15 +25,7 @@ function black_scholes_put(data) {
     var call_url = "".concat(exports.URL, "/put/black_scholes?spot=").concat(data.spot, "&strike=").concat(data.strike) +
         "&vol=".concat(data.vol, "&time=").concat(data.time, "&rate=").concat(data.rate, "&div=").concat(data.div);
     try {
-        (0, node_fetch_1["default"])(call_url)
-            .then(function (res) { return res.json(); })
-            .then(function (json) {
-            if (isValidResponse(json)) {
-                console.log(json.price);
-                return json.price;
-            }
-        });
-        return 0;
+        return (0, node_fetch_1["default"])(call_url);
     }
     catch (e) {
         throw e;
@@ -52,15 +36,7 @@ function binomial_call(data) {
     var call_url = "".concat(exports.URL, "/call/binomial?spot=").concat(data.spot, "&strike=").concat(data.strike) +
         "&vol=".concat(data.vol, "&time=").concat(data.time, "&rate=").concat(data.rate, "&div=").concat(data.div, "&steps=").concat(data.steps);
     try {
-        (0, node_fetch_1["default"])(call_url)
-            .then(function (res) { return res.json(); })
-            .then(function (json) {
-            if (isValidResponse(json)) {
-                console.log(json.price);
-                return json.price;
-            }
-        });
-        return 0;
+        return (0, node_fetch_1["default"])(call_url);
     }
     catch (e) {
         throw e;
@@ -69,17 +45,9 @@ function binomial_call(data) {
 exports.binomial_call = binomial_call;
 function binomial_put(data) {
     var call_url = "".concat(exports.URL, "/put/binomial?spot=").concat(data.spot, "&strike=").concat(data.strike) +
-        "&vol=".concat(data.vol, "&time=").concat(data.time, "&rate=").concat(data.rate, "&steps=").concat(data.steps);
+        "&vol=".concat(data.vol, "&time=").concat(data.time, "&rate=").concat(data.rate, "&div=").concat(data.div, "&steps=").concat(data.steps);
     try {
-        (0, node_fetch_1["default"])(call_url)
-            .then(function (res) { return res.json(); })
-            .then(function (json) {
-            if (isValidResponse(json)) {
-                console.log(json.price);
-                return json.price;
-            }
-        });
-        return 0;
+        return (0, node_fetch_1["default"])(call_url);
     }
     catch (e) {
         throw e;

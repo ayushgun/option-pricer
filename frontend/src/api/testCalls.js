@@ -18,7 +18,8 @@ var binData = {
     div: 0.01,
     steps: 300
 };
-(0, api_1.black_scholes_call)(bsData);
+var x = (0, api_1.black_scholes_call)(bsData);
+x.then(function (res) { return res.json(); }).then(function (r) { console.log(r.price); });
 // console.log(black_scholes_put(bsData));
 // console.log(binomial_call(binData));
 // console.log(binomial_put(binData));
