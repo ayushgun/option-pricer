@@ -1,4 +1,4 @@
-import {BlackScholes, Binomial, Response, URL, isValidResponse, black_scholes_call, black_scholes_put, binomial_call, binomial_put} from "./api";
+import {black_scholes_call, black_scholes_put, binomial_call, binomial_put} from "./api";
 
 
 let bsData = {
@@ -21,10 +21,10 @@ let binData = {
 };
 
 
-// console.log(black_scholes_call(bsData));
+black_scholes_call(bsData);
 
 // console.log(black_scholes_put(bsData));
 
 // console.log(binomial_call(binData));
 
-console.log(binomial_put(binData));
+// console.log(binomial_put(binData));
