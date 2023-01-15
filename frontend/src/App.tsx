@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 
 import {
@@ -40,8 +39,6 @@ function BlackScholesComp(): JSX.Element {
 
     // Build handler to store form data in state
     let handleSubmit = (event: any) => {
-    // Build handler to store form data in state
-    let handleSubmit = (event: any) => {
         event.preventDefault();
         const model_params = {
             spot: event.target.spot.value,
@@ -63,12 +60,12 @@ function BlackScholesComp(): JSX.Element {
         }
 
         // Compute and store call and put prices
-        black_scholes_call(model_params)
+        blackScholesCall(model_params)
             .then((response) => response.json())
             .then((data) => setCallPrice(data.price))
             .catch((e) => alert(e));
 
-        black_scholes_put(model_params)
+        blackScholesPut(model_params)
             .then((response) => response.json())
             .then((data) => setPutPrice(data.price))
             .catch((e) => alert(e));
@@ -150,8 +147,6 @@ function BinomialComp(): JSX.Element {
 
     // Build handler to store form data in state
     let handleSubmit = (event: any) => {
-    // Build handler to store form data in state
-    let handleSubmit = (event: any) => {
         event.preventDefault();
         const model_params = {
             spot: event.target.spot.value,
@@ -177,12 +172,12 @@ function BinomialComp(): JSX.Element {
         }
 
         // Compute and store call and put prices
-        binomial_call(model_params)
+        binomialCall(model_params)
             .then((response) => response.json())
             .then((data) => setCallPrice(data.price))
             .catch((e) => alert(e));
 
-        binomial_put(model_params)
+        binomialPut(model_params)
             .then((response) => response.json())
             .then((data) => setPutPrice(data.price))
             .catch((e) => alert(e));
@@ -262,5 +257,3 @@ function BinomialComp(): JSX.Element {
         </div>
     );
 }
-
-export default App;
