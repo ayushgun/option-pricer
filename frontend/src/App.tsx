@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
-    blackScholesCall,
     blackScholesPut,
-    binomialCall,
+    blackScholesCall,
     binomialPut,
+    binomialCall,
 } from "./calls";
 
 export default function App() {
@@ -59,17 +59,17 @@ function BlackScholesComp(): JSX.Element {
         // Compute and store call and put prices
         blackScholesCall(model_params)
             .then((response) => response.json())
-            .then((data) => setCallPrice(data.price))
-            .catch((e) => alert(e));
+            .then((data: any) => setCallPrice(data.price))
+            .catch((error: Error) => alert(error));
         blackScholesPut(model_params)
             .then((response) => response.json())
-            .then((data) => setPutPrice(data.price))
-            .catch((e) => alert(e));
+            .then((data: any) => setPutPrice(data.price))
+            .catch((error: Error) => alert(error));
     };
 
     // Store pricing parameters inside state
     return (
-        <div className="bg-neutral-900	rounded-lg">
+        <div className="bg-neutral-900  rounded-lg">
             <form onSubmit={handleSubmit}>
                 <p className="text-center font-light text-gray-300 mb-5">
                     Black-Scholes Model
@@ -173,17 +173,17 @@ function BinomialComp(): JSX.Element {
         binomialCall(model_params)
             .then((response) => response.json())
             .then((data) => setCallPrice(data.price))
-            .catch((e) => alert(e));
+            .catch((error) => alert(error));
 
         binomialPut(model_params)
             .then((response) => response.json())
             .then((data) => setPutPrice(data.price))
-            .catch((e) => alert(e));
+            .catch((error) => alert(error));
     };
 
     // Store pricing parameters inside state
     return (
-        <div className="bg-neutral-900	rounded-lg ">
+        <div className="bg-neutral-900  rounded-lg ">
             <form onSubmit={handleSubmit}>
                 <p className="text-center font-light text-gray-300 mb-5">
                     Binomial Model
