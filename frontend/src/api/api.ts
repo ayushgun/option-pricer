@@ -37,42 +37,26 @@ export function black_scholes_call(data: BlackScholes) {
   let call_url =
     `${URL}/call/black_scholes?spot=${data.spot}&strike=${data.strike}` +
     `&vol=${data.vol}&time=${data.time}&rate=${data.rate}&div=${data.div}`;
-    try {
-      return fetch(call_url);
-    } catch (e) {
-      throw e;
-    }
+  return fetch(call_url);
 }
 
 export function black_scholes_put(data: BlackScholes) {
   let call_url =
     `${URL}/put/black_scholes?spot=${data.spot}&strike=${data.strike}` +
     `&vol=${data.vol}&time=${data.time}&rate=${data.rate}&div=${data.div}`;
-    try {
-      return fetch(call_url);
-    } catch (e) {
-      throw e;
-    }
+    return fetch(call_url);
 }
 
 export function binomial_call(data: Binomial) {
   let call_url =
     `${URL}/call/binomial?spot=${data.spot}&strike=${data.strike}` +
     `&vol=${data.vol}&time=${data.time}&rate=${data.rate}&div=${data.div}&steps=${data.steps}`;
-    try {
-      return fetch(call_url);
-    } catch (e) {
-      throw e;
-    }
+    return fetch(call_url);
 }
 
 export function binomial_put(data: Binomial) {
   let call_url =
     `${URL}/put/binomial?spot=${data.spot}&strike=${data.strike}` +
     `&vol=${data.vol}&time=${data.time}&rate=${data.rate}&div=${data.div}&steps=${data.steps}`;
-    try {
-      return fetch(call_url);
-    } catch (e) {
-      throw e;
-    }
+    return fetch(call_url);
 }

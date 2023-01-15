@@ -1,4 +1,6 @@
 import React from "react";
+import { useState } from "react";
+
 import {
     black_scholes_call,
     black_scholes_put,
@@ -6,353 +8,253 @@ import {
     binomial_put,
 } from "./api/api";
 
-// export default function App() {
-//   return (
-//     <div>
-//       <h1 className="font-bold text-white text-center text-7xl">
-//         Options Pricer
-//       </h1>
-//       <p className="m-10 font-light text-gray-400 text-center text-xl">
-//         Options Pricer is the platform for traders, providing the speed<br></br>{" "}
-//         and reliability innovators need to create at the moment of inspiration.
-//       </p>
-//     </div>
-//   );
-// }
-
-export class BlackScholesComp extends React.Component<
-    {},
-    {
-        spot: number;
-        strike: number;
-        vol: number;
-        time: number;
-        rate: number;
-        div: number;
-        callPrice: number;
-        putPrice: number;
-    }
-> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            spot: 0,
-            strike: 0,
-            vol: 0,
-            time: 0,
-            rate: 0,
-            div: 0,
-            callPrice: 0,
-            putPrice: 0,
-        };
-
-        this.handleSpot = this.handleSpot.bind(this);
-        this.handleStrike = this.handleStrike.bind(this);
-        this.handleVol = this.handleVol.bind(this);
-        this.handleTime = this.handleTime.bind(this);
-        this.handleRate = this.handleRate.bind(this);
-        this.handleDiv = this.handleDiv.bind(this);
-
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleSpot(event: { target: { value: any } }) {
-        this.setState({ spot: event.target.value });
-    }
-    handleStrike(event: { target: { value: any } }) {
-        this.setState({ strike: event.target.value });
-    }
-    handleVol(event: { target: { value: any } }) {
-        this.setState({ vol: event.target.value });
-    }
-    handleTime(event: { target: { value: any } }) {
-        this.setState({ time: event.target.value });
-    }
-    handleRate(event: { target: { value: any } }) {
-        this.setState({ rate: event.target.value });
-    }
-    handleDiv(event: { target: { value: any } }) {
-        this.setState({ div: event.target.value });
-    }
-
-    handleSubmit(event: { preventDefault: () => void }) {
-        black_scholes_call({
-            spot: this.state.spot,
-            strike: this.state.strike,
-            vol: this.state.vol,
-            time: this.state.time,
-            rate: this.state.rate,
-            div: this.state.div,
-        })
-            .then((res) => res.json())
-            .then((r) => {
-                console.log(r.price);
-            });
-
-        // replace above code with this when it works
-        // black_scholes_call({
-        //   spot: this.state.spot,
-        //   strike: this.state.strike,
-        //   vol: this.state.vol,
-        //   time: this.state.time,
-        //   rate: this.state.rate,
-        //   div: this.state.div,
-        // })
-        //   .then((res) => res.json())
-        //   .then((r) => {
-        //     this.setState({
-        //       price: r.price,
-        //     });
-        //   });
-        // black_scholes_put({
-        //   spot: this.state.spot,
-        //   strike: this.state.strike,
-        //   vol: this.state.vol,
-        //   time: this.state.time,
-        //   rate: this.state.rate,
-        //   div: this.state.div,
-        // })
-        //   .then((res) => res.json())
-        //   .then((r) => {
-        //     this.setState({
-        //       price: r.price,
-        //     });
-        //   });
-
-        event.preventDefault();
-    }
-
-    render() {
-        return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Spot:
-                        <input
-                            type="number"
-                            value={this.state.spot}
-                            onChange={this.handleSpot}
-                        />
-                        <br />
-                        Strike:
-                        <input
-                            type="number"
-                            value={this.state.strike}
-                            onChange={this.handleStrike}
-                        />
-                        <br />
-                        Volatility:
-                        <input
-                            type="number"
-                            value={this.state.vol}
-                            onChange={this.handleVol}
-                        />
-                        <br />
-                        Time:
-                        <input
-                            type="number"
-                            value={this.state.time}
-                            onChange={this.handleTime}
-                        />
-                        <br />
-                        Interest Rate:
-                        <input
-                            type="number"
-                            value={this.state.rate}
-                            onChange={this.handleRate}
-                        />
-                        <br />
-                        Dividend:
-                        <input
-                            type="number"
-                            value={this.state.div}
-                            onChange={this.handleDiv}
-                        />
-                    </label>
-                    <br />
-                    <br />
-                    <input type="submit" value="Submit" />
-                </form>
-                <p>Call Price: {this.state.callPrice}</p>
-                <b />
-                <p>Put Price: {this.state.putPrice}</p>
+export function App() {
+    return (
+        <div>
+            <h1 className="font-bold text-white text-center text-7xl mt-10">
+                Options Pricer
+            </h1>
+            <p className="m-10 font-light text-gray-400 text-center text-xl">
+                Options Pricer is the platform for traders, providing the speed
+                <br></br> and reliability innovators need to create at the
+                moment of inspiration.
+            </p>
+            <div className="flex justify-center">
+                <div className="flow-root w-6/12">
+                    <div className="float-left">
+                        <BlackScholesComp />
+                    </div>
+                    <div className="float-right">
+                        <BinomialComp />
+                    </div>
+                </div>
             </div>
-        );
-    }
+        </div>
+    );
 }
-export class BinomialComp extends React.Component<
-    {},
-    {
-        spot: number;
-        strike: number;
-        vol: number;
-        time: number;
-        rate: number;
-        div: number;
-        steps: number;
-        callPrice: number;
-        putPrice: number;
-    }
-> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            spot: 0,
-            strike: 0,
-            vol: 0,
-            time: 0,
-            rate: 0,
-            div: 0,
-            steps: 0,
-            callPrice: 0,
-            putPrice: 0,
+
+function BlackScholesComp(): JSX.Element {
+    // Define state of functional component
+    const [callPrice, setCallPrice] = useState(0);
+    const [putPrice, setPutPrice] = useState(0);
+
+    // Build handler to store form data in state
+    let handleSubmit = (event: any) => {
+        event.preventDefault();
+        const model_params = {
+            spot: event.target.spot.value,
+            strike: event.target.strike.value,
+            vol: event.target.vol.value,
+            time: event.target.time.value,
+            rate: event.target.rate.value,
+            div: event.target.div.value,
         };
 
-        this.handleSpot = this.handleSpot.bind(this);
-        this.handleStrike = this.handleStrike.bind(this);
-        this.handleVol = this.handleVol.bind(this);
-        this.handleTime = this.handleTime.bind(this);
-        this.handleRate = this.handleRate.bind(this);
-        this.handleDiv = this.handleDiv.bind(this);
-        this.handleSteps = this.handleSteps.bind(this);
+        if (
+            (model_params.spot <= 0,
+            model_params.strike <= 0,
+            model_params.vol <= 0,
+            model_params.time <= 0)
+        ) {
+            alert("Spot, Strike, Volatility, and Time must be greater than 0.");
+            return;
+        }
 
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+        // Compute and store call and put prices
+        black_scholes_call(model_params)
+            .then((response) => response.json())
+            .then((data) => setCallPrice(data.price))
+            .catch((e) => alert(e));
 
-    handleSpot(event: { target: { value: any } }) {
-        this.setState({ spot: event.target.value });
-    }
-    handleStrike(event: { target: { value: any } }) {
-        this.setState({ strike: event.target.value });
-    }
-    handleVol(event: { target: { value: any } }) {
-        this.setState({ vol: event.target.value });
-    }
-    handleTime(event: { target: { value: any } }) {
-        this.setState({ time: event.target.value });
-    }
-    handleRate(event: { target: { value: any } }) {
-        this.setState({ rate: event.target.value });
-    }
-    handleDiv(event: { target: { value: any } }) {
-        this.setState({ div: event.target.value });
-    }
-    handleSteps(event: { target: { value: any } }) {
-        this.setState({ div: event.target.value });
-    }
+        black_scholes_put(model_params)
+            .then((response) => response.json())
+            .then((data) => setPutPrice(data.price))
+            .catch((e) => alert(e));
+    };
 
-    handleSubmit(event: { preventDefault: () => void }) {
-        binomial_call({
-            spot: this.state.spot,
-            strike: this.state.strike,
-            vol: this.state.vol,
-            time: this.state.time,
-            rate: this.state.rate,
-            div: this.state.div,
-            steps: this.state.steps,
-        })
-            .then((res) => res.json())
-            .then((r) => {
-                console.log(r.price);
-            });
+    // Store pricing parameters inside state
+    return (
+        <div className="bg-neutral-900	rounded-lg">
+            <form onSubmit={handleSubmit}>
+                <p className="text-center font-light text-gray-300 mb-5">
+                    Black-Scholes Model
+                </p>
+                <div className="flow-root">
+                    <p className="ml-3 text-white float-left">Spot: </p>
+                    <input
+                        className=" float-right text-white bg-neutral-900"
+                        type="number"
+                    />
+                </div>
+                <div className="flow-root">
+                    <p className="ml-3 text-white float-left">Strike: </p>
+                    <input
+                        className=" float-right text-white bg-neutral-900"
+                        type="number"
+                    />
+                </div>
+                <div className="flow-root">
+                    <p className="ml-3 text-white float-left">Volatility:</p>
+                    <input
+                        className=" float-right text-white bg-neutral-900"
+                        type="number"
+                    />
+                </div>
+                <div className="flow-root">
+                    <p className="ml-3 text-white float-left">Time: </p>
+                    <input
+                        className=" float-right text-white bg-neutral-900"
+                        type="number"
+                    />
+                </div>
+                <div className="flow-root">
+                    <p className="ml-3 text-white float-left">
+                        Interest Rate:{" "}
+                    </p>
+                    <input
+                        className=" ml-3 float-right text-white bg-neutral-900"
+                        type="number"
+                    />
+                </div>
+                <div className="flow-root">
+                    <p className="ml-3 text-white float-left">Dividend: </p>
+                    <input
+                        className=" float-right text-white bg-neutral-900"
+                        type="number"
+                    />
+                </div>
+                <br />
+                <br />
+                <input
+                    type="submit"
+                    value=" Submit "
+                    className="ml-5 bg-black rounded-md text-white mt-2"
+                />
+            </form>
+            <p className="ml-3 font-light text-white mt-3">
+                Call Price: {Math.round(callPrice * 100) / 100}
+            </p>
+            <p className="ml-3 font-light text-white">
+                Put Price: {Math.round(putPrice * 100) / 100}
+            </p>
+        </div>
+    );
+}
 
-        // replace above code with this when it works
-        // binomial_put({
-        //   spot: this.state.spot,
-        //   strike: this.state.strike,
-        //   vol: this.state.vol,
-        //   time: this.state.time,
-        //   rate: this.state.rate,
-        //   div: this.state.div,
-        //   steps: this.state.steps,
-        // })
-        //   .then((res) => res.json())
-        //   .then((r) => {
-        //     this.setState({
-        //       price: r.price,
-        //     });
-        //   });
-        // binomial_call({
-        //   spot: this.state.spot,
-        //   strike: this.state.strike,
-        //   vol: this.state.vol,
-        //   time: this.state.time,
-        //   rate: this.state.rate,
-        //   div: this.state.div,
-        //   steps: this.state.steps,
-        // })
-        //   .then((res) => res.json())
-        //   .then((r) => {
-        //     this.setState({
-        //       price: r.price,
-        //     });
-        //   });
+function BinomialComp(): JSX.Element {
+    // Define state of functional component
+    const [callPrice, setCallPrice] = useState(0);
+    const [putPrice, setPutPrice] = useState(0);
 
+    // Build handler to store form data in state
+    let handleSubmit = (event: any) => {
         event.preventDefault();
-    }
+        const model_params = {
+            spot: event.target.spot.value,
+            strike: event.target.strike.value,
+            vol: event.target.vol.value,
+            time: event.target.time.value,
+            rate: event.target.rate.value,
+            div: event.target.div.value,
+            steps: event.target.steps.value,
+        };
 
-    render() {
-        return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Spot:
-                        <input
-                            type="number"
-                            value={this.state.spot}
-                            onChange={this.handleSpot}
-                        />
-                        <br />
-                        Strike:
-                        <input
-                            type="number"
-                            value={this.state.strike}
-                            onChange={this.handleStrike}
-                        />
-                        <br />
-                        Volatility:
-                        <input
-                            type="number"
-                            value={this.state.vol}
-                            onChange={this.handleVol}
-                        />
-                        <br />
-                        Time:
-                        <input
-                            type="number"
-                            value={this.state.time}
-                            onChange={this.handleTime}
-                        />
-                        <br />
-                        Interest Rate:
-                        <input
-                            type="number"
-                            value={this.state.rate}
-                            onChange={this.handleRate}
-                        />
-                        <br />
-                        Dividend:
-                        <input
-                            type="number"
-                            value={this.state.div}
-                            onChange={this.handleDiv}
-                        />
-                        <br />
-                        Steps:
-                        <input
-                            type="number"
-                            value={this.state.steps}
-                            onChange={this.handleSteps}
-                        />
-                    </label>
-                    <br />
-                    <br />
-                    <input type="submit" value="Submit" />
-                </form>
-                <p>Call Price: {this.state.callPrice}</p>
-                <b />
-                <p>Put Price: {this.state.putPrice}</p>
-            </div>
-        );
-    }
+        if (
+            (model_params.spot <= 0,
+            model_params.strike <= 0,
+            model_params.vol <= 0,
+            model_params.time <= 0,
+            model_params.steps <= 0)
+        ) {
+            alert(
+                "Spot, Strike, Volatility, Time, and Steps must be greater than 0."
+            );
+            return;
+        }
+
+        // Compute and store call and put prices
+        binomial_call(model_params)
+            .then((response) => response.json())
+            .then((data) => setCallPrice(data.price))
+            .catch((e) => alert(e));
+
+        binomial_put(model_params)
+            .then((response) => response.json())
+            .then((data) => setPutPrice(data.price))
+            .catch((e) => alert(e));
+    };
+
+    // Store pricing parameters inside state
+    return (
+        <div className="bg-neutral-900	rounded-lg ">
+            <form onSubmit={handleSubmit}>
+                <p className="text-center font-light text-gray-300 mb-5">
+                    Binomial Model
+                </p>
+                <div className="flow-root">
+                    <p className="ml-3 text-white float-left">Spot: </p>
+                    <input
+                        className=" float-right text-white bg-neutral-900"
+                        type="number"
+                    />
+                </div>
+                <div className="flow-root">
+                    <p className="ml-3 text-white float-left">Strike: </p>
+                    <input
+                        className=" float-right text-white bg-neutral-900"
+                        type="number"
+                    />
+                </div>
+                <div className="flow-root">
+                    <p className="ml-3 text-white float-left">Volatility:</p>
+                    <input
+                        className=" float-right text-white bg-neutral-900"
+                        type="number"
+                    />
+                </div>
+                <div className="flow-root">
+                    <p className="ml-3 text-white float-left">Time: </p>
+                    <input
+                        className=" float-right text-white bg-neutral-900"
+                        type="number"
+                    />
+                </div>
+                <div className="flow-root">
+                    <p className="ml-3 text-white float-left">
+                        Interest Rate:{" "}
+                    </p>
+                    <input
+                        className=" ml-3 float-right text-white bg-neutral-900"
+                        type="number"
+                    />
+                </div>
+                <div className="flow-root">
+                    <p className="ml-3 text-white float-left">Dividend: </p>
+                    <input
+                        className=" float-right text-white bg-neutral-900"
+                        type="number"
+                    />
+                </div>
+                <div className="flow-root">
+                    <p className="ml-3 text-white float-left">Steps: </p>
+                    <input
+                        className=" float-right text-white bg-neutral-900"
+                        type="number"
+                    />
+                </div>
+                <br />
+                <input
+                    type="submit"
+                    value=" Submit "
+                    className="ml-5 bg-black rounded-md text-white mt-2"
+                />
+            </form>
+            <p className="ml-3 font-light text-white mt-3">
+                Call Price: {Math.round(callPrice * 100) / 100}
+            </p>
+            <p className="ml-3 font-light text-white">
+                Put Price: {Math.round(putPrice * 100) / 100}
+            </p>
+        </div>
+    );
 }

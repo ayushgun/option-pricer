@@ -80,17 +80,17 @@ async fn main() -> std::io::Result<()> {
 
     // Initialize HTTP server
     HttpServer::new(move || {
-        // Allow 1 request per 1 second
-        let input = SimpleInputFunctionBuilder::new(std::time::Duration::from_secs(1), 1)
+        // Set up rate limiter to allow limited requests
+        let input = SimpleInputFunctionBuilder::new(std::time::Duration::from_secs(1), 5)
             .real_ip_key()
             .build();
-        let middleware = RateLimiter::builder(store.clone(), input)
+        let ratelimiter = RateLimiter::builder(store.clone(), input)
             .add_headers()
             .build();
 
         // Add services and middlewares
         App::new()
-            .wrap(middleware)
+            .wrap(ratelimiter)
             .service(root)
             .service(black_scholes_call)
             .service(binomial_call)
