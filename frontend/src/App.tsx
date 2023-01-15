@@ -81,28 +81,28 @@ function BlackScholesComp(): JSX.Element {
                 <div className="flow-root">
                     <p className="ml-3 text-white float-left">Spot: </p>
                     <input
-                        className=" float-right text-white bg-neutral-900"
+                        className=" float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
                 <div className="flow-root">
                     <p className="ml-3 text-white float-left">Strike: </p>
                     <input
-                        className=" float-right text-white bg-neutral-900"
+                        className=" float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
                 <div className="flow-root">
                     <p className="ml-3 text-white float-left">Volatility:</p>
                     <input
-                        className=" float-right text-white bg-neutral-900"
+                        className=" float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
                 <div className="flow-root">
                     <p className="ml-3 text-white float-left">Time: </p>
                     <input
-                        className=" float-right text-white bg-neutral-900"
+                        className=" float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
@@ -111,14 +111,14 @@ function BlackScholesComp(): JSX.Element {
                         Interest Rate:{" "}
                     </p>
                     <input
-                        className=" ml-3 float-right text-white bg-neutral-900"
+                        className=" ml-3 float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
                 <div className="flow-root">
                     <p className="ml-3 text-white float-left">Dividend: </p>
                     <input
-                        className=" float-right text-white bg-neutral-900"
+                        className=" float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
@@ -193,28 +193,28 @@ function BinomialComp(): JSX.Element {
                 <div className="flow-root">
                     <p className="ml-3 text-white float-left">Spot: </p>
                     <input
-                        className=" float-right text-white bg-neutral-900"
+                        className=" float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
                 <div className="flow-root">
                     <p className="ml-3 text-white float-left">Strike: </p>
                     <input
-                        className=" float-right text-white bg-neutral-900"
+                        className=" float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
                 <div className="flow-root">
                     <p className="ml-3 text-white float-left">Volatility:</p>
                     <input
-                        className=" float-right text-white bg-neutral-900"
+                        className=" float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
                 <div className="flow-root">
                     <p className="ml-3 text-white float-left">Time: </p>
                     <input
-                        className=" float-right text-white bg-neutral-900"
+                        className=" float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
@@ -223,21 +223,21 @@ function BinomialComp(): JSX.Element {
                         Interest Rate:{" "}
                     </p>
                     <input
-                        className=" ml-3 float-right text-white bg-neutral-900"
+                        className=" ml-3 float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
                 <div className="flow-root">
                     <p className="ml-3 text-white float-left">Dividend: </p>
                     <input
-                        className=" float-right text-white bg-neutral-900"
+                        className=" float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
                 <div className="flow-root">
                     <p className="ml-3 text-white float-left">Steps: </p>
                     <input
-                        className=" float-right text-white bg-neutral-900"
+                        className=" float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
