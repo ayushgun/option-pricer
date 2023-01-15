@@ -78,35 +78,35 @@ function BlackScholesComp(): JSX.Element {
                 <p className="text-center font-light text-gray-300 mb-5">
                     Black-Scholes Model
                 </p>
-                <div className="flow-root">
+                <div className="flow-root mr-5">
                     <p className="ml-3 text-white float-left">Spot: </p>
                     <input
                         className=" float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
-                <div className="flow-root">
+                <div className="flow-root mr-5">
                     <p className="ml-3 text-white float-left">Strike: </p>
                     <input
                         className=" float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
-                <div className="flow-root">
+                <div className="flow-root mr-5">
                     <p className="ml-3 text-white float-left">Volatility:</p>
                     <input
                         className=" float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
-                <div className="flow-root">
+                <div className="flow-root mr-5">
                     <p className="ml-3 text-white float-left">Time: </p>
                     <input
                         className=" float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
-                <div className="flow-root">
+                <div className="flow-root mr-5">
                     <p className="ml-3 text-white float-left">
                         Interest Rate:{" "}
                     </p>
@@ -115,7 +115,7 @@ function BlackScholesComp(): JSX.Element {
                         type="number"
                     />
                 </div>
-                <div className="flow-root">
+                <div className="flow-root mr-5">
                     <p className="ml-3 text-white float-left">Dividend: </p>
                     <input
                         className=" float-right text-white bg-neutral-800"
@@ -190,35 +190,35 @@ function BinomialComp(): JSX.Element {
                 <p className="text-center font-light text-gray-300 mb-5">
                     Binomial Model
                 </p>
-                <div className="flow-root">
+                <div className="flow-root mr-5">
                     <p className="ml-3 text-white float-left">Spot: </p>
                     <input
                         className=" float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
-                <div className="flow-root">
+                <div className="flow-root mr-5">
                     <p className="ml-3 text-white float-left">Strike: </p>
                     <input
                         className=" float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
-                <div className="flow-root">
+                <div className="flow-root mr-5">
                     <p className="ml-3 text-white float-left">Volatility:</p>
                     <input
                         className=" float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
-                <div className="flow-root">
+                <div className="flow-root mr-5">
                     <p className="ml-3 text-white float-left">Time: </p>
                     <input
                         className=" float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
-                <div className="flow-root">
+                <div className="flow-root mr-5">
                     <p className="ml-3 text-white float-left">
                         Interest Rate:{" "}
                     </p>
@@ -227,14 +227,14 @@ function BinomialComp(): JSX.Element {
                         type="number"
                     />
                 </div>
-                <div className="flow-root">
+                <div className="flow-root mr-5">
                     <p className="ml-3 text-white float-left">Dividend: </p>
                     <input
                         className=" float-right text-white bg-neutral-800"
                         type="number"
                     />
                 </div>
-                <div className="flow-root">
+                <div className="flow-root mr-5">
                     <p className="ml-3 text-white float-left">Steps: </p>
                     <input
                         className=" float-right text-white bg-neutral-800"
