@@ -2,11 +2,11 @@ import React from "react";
 import { useState } from "react";
 
 import {
-    black_scholes_call,
-    black_scholes_put,
-    binomial_call,
-    binomial_put,
-} from "./api/api";
+    blackScholesCall,
+    blackScholesPut,
+    binomialCall,
+    binomialPut,
+} from "./calls";
 
 export function App() {
     return (
@@ -38,6 +38,8 @@ function BlackScholesComp(): JSX.Element {
     const [callPrice, setCallPrice] = useState(0);
     const [putPrice, setPutPrice] = useState(0);
 
+    // Build handler to store form data in state
+    let handleSubmit = (event: any) => {
     // Build handler to store form data in state
     let handleSubmit = (event: any) => {
         event.preventDefault();
@@ -146,6 +148,8 @@ function BinomialComp(): JSX.Element {
     const [callPrice, setCallPrice] = useState(0);
     const [putPrice, setPutPrice] = useState(0);
 
+    // Build handler to store form data in state
+    let handleSubmit = (event: any) => {
     // Build handler to store form data in state
     let handleSubmit = (event: any) => {
         event.preventDefault();
@@ -258,3 +262,5 @@ function BinomialComp(): JSX.Element {
         </div>
     );
 }
+
+export default App;
