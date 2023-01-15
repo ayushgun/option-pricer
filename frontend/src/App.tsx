@@ -6,7 +6,7 @@ import {
     binomialPut,
 } from "./calls";
 
-export default function App() {
+export function App() {
     return (
         <div>
             <h1 className="font-bold text-white text-center text-7xl mt-10">
@@ -53,9 +53,14 @@ function BlackScholesComp(): JSX.Element {
             model_params.strike <= 0,
             model_params.time <= 0)
         ) {
-            alert("Spot, Strike, and Time must be greater than 0.");
+            alert("Spot, Strike, Volatility, and Time must be greater than 0.");
             return;
         }
+
+        // Compute and store call and put prices
+        blackScholesCall(model_params)
+            .then((response) => response.json())
+            .then((data) => setCallPrice(data.price))
 
         // Compute and store call and put prices
         blackScholesCall(model_params)
@@ -66,7 +71,12 @@ function BlackScholesComp(): JSX.Element {
         blackScholesPut(model_params)
             .then((response) => response.json())
             .then((data) => setPutPrice(data.price))
+
+        blackScholesPut(model_params)
+            .then((response) => response.json())
+            .then((data) => setPutPrice(data.price))
             .catch((e) => alert(e));
+    };
     };
 
     // Store pricing parameters inside state
@@ -176,12 +186,21 @@ function BinomialComp(): JSX.Element {
         binomialCall(model_params)
             .then((response) => response.json())
             .then((data) => setCallPrice(data.price))
+        // Compute and store call and put prices
+        binomialCall(model_params)
+            .then((response) => response.json())
+            .then((data) => setCallPrice(data.price))
             .catch((e) => alert(e));
 
         binomialPut(model_params)
             .then((response) => response.json())
             .then((data) => setPutPrice(data.price))
+
+        binomialPut(model_params)
+            .then((response) => response.json())
+            .then((data) => setPutPrice(data.price))
             .catch((e) => alert(e));
+    };
     };
 
     // Store pricing parameters inside state
