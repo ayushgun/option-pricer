@@ -31,7 +31,7 @@ export function About(): JSX.Element {
                     computational resources. It provides the same result as the
                     Black-Scholes model when used for European options.
                     Comparitively, the Binomial model is more flexible, as it
-                    allows the user to account for early excersizes — which are
+                    allows the user to account for early exercise — which are
                     possible when dealing with American options. Here, the
                     Binomial model computes the price for American options. The
                     process used to compute an option's price using the Binomial
