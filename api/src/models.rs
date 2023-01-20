@@ -43,6 +43,7 @@ impl Binomial {
                 price[i as usize] = f64::max(price[i as usize], exercise);
             }
         }
+
         price[0]
     }
 
@@ -63,6 +64,7 @@ impl Binomial {
                 price[i as usize] = f64::max(price[i as usize], exercise);
             }
         }
+
         price[0]
     }
 }
