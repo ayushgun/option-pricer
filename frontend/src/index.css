@@ -1,9 +1,18 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap");
+.main {
+    margin-top: 1%;
+    scroll-behavior: smooth;
+}
 
-body {
-    font-family: "Inter", sans-serif;
-    background-color: black;
+.black-scholes {
+    width: 50%;
+    margin-right: 1%;
+}
+
+.binomial {
+    width: 50%;
+    margin-left: 1%;
+}
+
+#calculators {
+    display: flex;
 }

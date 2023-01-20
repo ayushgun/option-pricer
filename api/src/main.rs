@@ -81,7 +81,7 @@ async fn main() -> std::io::Result<()> {
     // Initialize HTTP server
     HttpServer::new(move || {
         // Set up rate limiter to allow limited requests
-        let input = SimpleInputFunctionBuilder::new(std::time::Duration::from_secs(1), 5)
+        let input = SimpleInputFunctionBuilder::new(std::time::Duration::from_secs(1), 8)
             .real_ip_key()
             .build();
         let ratelimiter = RateLimiter::builder(store.clone(), input)
