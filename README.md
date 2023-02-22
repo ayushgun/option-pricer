@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://i.imgur.com/JNIYwjA.png" width="400px">
+  <img src="https://i.imgur.com/8OtRg9B.png" width="400px">
   <br>
 </h1>
 <p align="center">
@@ -7,7 +7,7 @@
     <img src="https://img.shields.io/github/v/tag/ayushgun/pricer?label=version&style=flat-square"/>
   </a>
   <a href="LICENSE.md">
-    <img src="https://img.shields.io/github/license/ayushgun/authplus?style=flat-square"/>
+    <img src="https://img.shields.io/github/license/ayushgun/pricer?style=flat-square"/>
   </a>
 </p>
 
@@ -22,9 +22,7 @@ Options Pricer features:
 
 # Models
 
-The Black-Scholes model works primarily on European options. It provides users with an accurate options price without requiring a large amount of computational resources. The Black-Scholes model is not as flexible as other models, but it provides a solid baseline for pricing options quickly. The equation used to compute an option's price using the Black-Scholes model is provided below, courtesy of Wikimedia.
-
-![black-scholes](https://wikimedia.org/api/rest_v1/media/math/render/svg/d85601f6192ee85748c2deef28240275510d634e)
+The Black-Scholes model works primarily on European options. It provides users with an accurate options price without requiring a large amount of computational resources. The Black-Scholes model is not as flexible as other models, but it provides a solid baseline for pricing options quickly.
 
 On the other hand, the Binomial model is a more accurate model that is slower as it requires a larger amount of computational resources. It provides the same result as the Black-Scholes model when used for European options. Comparitively, the Binomial model is more flexible, as it allows the user to account for early exercise — which are possible when dealing with American options. Here, the Binomial model computes the price for American options.
 
