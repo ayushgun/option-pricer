@@ -1,5 +1,7 @@
 <h1 align="center">
-  <img src="https://i.imgur.com/8OtRg9B.png" width="400px">
+  <a href="https://frontend.ayushgun.repl.co">
+    <img src="https://i.imgur.com/8OtRg9B.png" width="400px">
+  </a>
   <br>
 </h1>
 <p align="center">
@@ -28,7 +30,7 @@ On the other hand, the Binomial model is a more accurate model that is slower as
 
 # Self-Hosting
 
-Options Pricer can easily be self hosted. Dockerfiles have been provided as official releases [here](https://github.com/ayushgun/pricer/releases). However, if you would like to locally build the application, follow the steps below.
+Options Pricer can easily be self hosted. Dockerfiles have been provided as official releases [here](https://github.com/ayushgun/pricer/releases). If you would like to locally build the application, follow the steps below.
 
 1. Ensure that [Rust](https://www.rust-lang.org/tools/install) and [Node.js](https://nodejs.org/en/download/) are installed on the machine.
 
