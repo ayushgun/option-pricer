@@ -1,9 +1,9 @@
-use serde::Deserialize;
-use statrs::distribution::Normal;
+use serde;
+use statrs;
 use statrs::distribution::Univariate;
 
 // Parameter objects
-#[derive(Deserialize)]
+#[derive(serde::Deserialize)]
 pub struct Binomial {
     spot: f64,
     strike: f64,
@@ -14,7 +14,7 @@ pub struct Binomial {
     steps: i32,
 }
 
-#[derive(Deserialize)]
+#[derive(serde::Deserialize)]
 pub struct BlackScholes {
     pub spot: f64,
     pub strike: f64,
@@ -24,7 +24,6 @@ pub struct BlackScholes {
     pub div: f64,
 }
 
-// Compute call and put prices with binomial model
 impl Binomial {
     pub fn call_price(&self) -> f64 {
         let dt = self.time / self.steps as f64;
@@ -69,7 +68,6 @@ impl Binomial {
     }
 }
 
-// Compute call and put prices black-scholes model
 impl BlackScholes {
     fn d1(&self) -> f64 {
         (f64::ln(self.spot / self.strike)
@@ -82,13 +80,13 @@ impl BlackScholes {
     }
 
     pub fn call_price(&self) -> f64 {
-        let normal = Normal::new(0.0, 1.0).unwrap();
+        let normal = statrs::distribution::Normal::new(0.0, 1.0).unwrap();
         self.spot * normal.cdf(self.d1()) * (-self.div * self.time).exp()
             - self.strike * normal.cdf(self.d2()) * (-self.rate * self.time).exp()
     }
 
     pub fn put_price(&self) -> f64 {
-        let normal = Normal::new(0.0, 1.0).unwrap();
+        let normal = statrs::distribution::Normal::new(0.0, 1.0).unwrap();
         -self.spot * normal.cdf(-self.d1()) * (-self.div * self.time).exp()
             + self.strike * normal.cdf(-self.d2()) * (-self.rate * self.time).exp()
     }
