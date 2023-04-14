@@ -5,11 +5,11 @@
   <br>
 </h1>
 <p align="center">
-  <a href="https://github.com/ayushgun/pricer/releases/latest">
-    <img src="https://img.shields.io/github/v/tag/ayushgun/pricer?label=version&style=flat-square"/>
+  <a href="https://github.com/ayushgun/optionpricer/releases/latest">
+    <img src="https://img.shields.io/github/v/tag/ayushgun/option-pricer?label=version&style=flat-square"/>
   </a>
   <a href="LICENSE.md">
-    <img src="https://img.shields.io/github/license/ayushgun/pricer?style=flat-square"/>
+    <img src="https://img.shields.io/github/license/ayushgun/option-pricer?style=flat-square"/>
   </a>
 </p>
 
@@ -30,11 +30,11 @@ On the other hand, the Binomial model is a more accurate model that is slower as
 
 # Self-Hosting
 
-Options Pricer can easily be self hosted. Dockerfiles have been provided as official releases [here](https://github.com/ayushgun/pricer/releases). If you would like to locally build the application, follow the steps below.
+Options Pricer can easily be self hosted. Dockerfiles have been provided as official releases [here](https://github.com/ayushgun/option-pricer/releases). If you would like to locally build the application, follow the steps below.
 
 1. Ensure that [Rust](https://www.rust-lang.org/tools/install) and [Node.js](https://nodejs.org/en/download/) are installed on the machine.
 
-2. Clone the repository with `git clone https://github.com/ayushgun/pricer`.
+2. Clone the repository with `git clone https://github.com/ayushgun/option-pricer`.
 
 3. Move to the API directory with `cd api` and install the dependencies with `cargo build`. Start the API with `cargo run`.
 
