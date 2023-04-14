@@ -22,12 +22,10 @@ export function Home(): JSX.Element {
 export function Hero(): JSX.Element {
     return (
         <div className="px-4 pt-5 mb-4 text-center">
-            <h1 className="display-4 fw-bold">Options Pricing Model</h1>
+            <h1 className="display-4 fw-bold">Options Pricing Models</h1>
             <div className="col-lg-6 mx-auto">
                 <p className="lead mb-4">
-                    Options Pricer is the platform for traders, providing the
-                    speed and accuracy users need to trade at the moment of
-                    calculation.
+                Efficiently calculate option prices using Options Pricer, a flexible and intuitive platform featuring multiple pricing models.
                 </p>
             </div>
             <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
@@ -36,7 +34,7 @@ export function Hero(): JSX.Element {
                 </Button>
                 <Button
                     variant="secondary"
-                    href="https://github.com/ayushgun/pricer"
+                    href="https://github.com/ayushgun/option-pricer"
                 >
                     View Source
                 </Button>

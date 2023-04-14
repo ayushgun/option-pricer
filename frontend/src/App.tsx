@@ -1,7 +1,7 @@
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Route, Routes } from "react-router-dom";
-import { Home } from "./pages/Home";
 import { About } from "./pages/About";
+import { Home } from "./pages/Home";
 
 export default function App(): JSX.Element {
     return (
@@ -25,10 +25,10 @@ function Header(): JSX.Element {
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/about">About</Nav.Link>
                     <NavDropdown title="Links" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="https://github.com/ayushgun/pricer">
+                        <NavDropdown.Item href="https://github.com/ayushgun/option-pricer">
                             Source Code
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="https://github.com/ayushgun/pricer#Contributing">
+                        <NavDropdown.Item href="https://github.com/ayushgun/option-pricer#Contributing">
                             Contributing
                         </NavDropdown.Item>
                     </NavDropdown>
@@ -60,7 +60,7 @@ function Footer(): JSX.Element {
                 </li>
                 <li className="nav-item">
                     <a
-                        href="https://github.com/ayushgun/pricer"
+                        href="https://github.com/ayushgun/option-pricer"
                         className="nav-link px-2 text-muted"
                     >
                         Source
