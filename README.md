@@ -1,7 +1,5 @@
 <h1 align="center">
-  <a href="https://frontend.ayushgun.repl.co">
-    <img src="https://i.imgur.com/8OtRg9B.png" width="400px">
-  </a>
+  <img src="https://i.imgur.com/8OtRg9B.png" width="400px">
   <br>
 </h1>
 <p align="center">
