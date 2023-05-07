@@ -18,7 +18,7 @@ Options Pricer is a web application for pricing options using the Black-Scholes 
 Options Pricer features:
 
 - Interactive frontend user interface for computing options prices
-- Blazing fast REST API exposing pricing models as endpoints
+- REST API exposing pricing models as endpoints
 
 # Models
 
