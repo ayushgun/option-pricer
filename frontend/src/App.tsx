@@ -25,10 +25,10 @@ function Header(): JSX.Element {
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/about">About</Nav.Link>
                     <NavDropdown title="Links" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="https://github.com/ayushgun/option-pricer">
+                        <NavDropdown.Item href="https://github.com/ayushgun/options-pricer">
                             Source Code
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="https://github.com/ayushgun/option-pricer#Contributing">
+                        <NavDropdown.Item href="https://github.com/ayushgun/options-pricer#Contributing">
                             Contributing
                         </NavDropdown.Item>
                     </NavDropdown>
@@ -60,7 +60,7 @@ function Footer(): JSX.Element {
                 </li>
                 <li className="nav-item">
                     <a
-                        href="https://github.com/ayushgun/option-pricer"
+                        href="https://github.com/ayushgun/options-pricer"
                         className="nav-link px-2 text-muted"
                     >
                         Source

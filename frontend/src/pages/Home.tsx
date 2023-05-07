@@ -34,7 +34,7 @@ export function Hero(): JSX.Element {
                 </Button>
                 <Button
                     variant="secondary"
-                    href="https://github.com/ayushgun/option-pricer"
+                    href="https://github.com/ayushgun/options-pricer"
                 >
                     View Source
                 </Button>
