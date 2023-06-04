@@ -19,7 +19,7 @@ export interface Binomial {
   steps: number;
 }
 
-export const URL = "http://localhost:8000";
+export const URL = "http://localhost:8080";
 
 // Helper function to build the API route
 function buildRoute(
