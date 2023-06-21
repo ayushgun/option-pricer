@@ -30,13 +30,13 @@ On the other hand, the Binomial model is a more accurate model that is slower as
 
 Options Pricer can easily be self hosted. Dockerfiles have been provided as official releases [here](https://github.com/ayushgun/options-pricer/releases). If you would like to locally build the application, follow the steps below.
 
-1. Ensure that [Rust](https://www.rust-lang.org/tools/install) and [Node.js](https://nodejs.org/en/download/) are installed on the machine.
+1. Ensure that [Rust](https://www.rust-lang.org/tools/install), [Node.js](https://nodejs.org/en/download/) and [Screen](https://www.gnu.org/software/screen/) are installed on the machine.
 
 2. Clone the repository with `git clone https://github.com/ayushgun/options-pricer`.
 
-3. Move to the API directory with `cd api` and install the dependencies with `cargo build`. Start the API with `cargo run`.
+3. Run the `pricer.sh` script with the `start` argument to start the application: `./pricer.sh start`.
 
-4. Move to the frontend directory with `cd ../frontend` and install the dependencies with `npm install`. Start the frontend with `npm start`.
+Note: To stop the application, run the `pricer.sh` script with the `kill` argument: `./pricer.sh kill`.
 
 # Testing
 
@@ -46,7 +46,7 @@ To run the test suite:
 
 1. Ensure that [Python](https://www.python.org/downloads/) and [pip](https://pypi.org/project/pip/) is installed on the machine.
 
-2. Move to the API directory with `cd api` and start the API with `cargo run`.
+2. Start the API with the script: `./pricer.sh start`.
 
 3. Move to the test suite directory with `cd tests`. Then, install the test suite dependencies with `pip3 install -r requirements.txt`.
 
